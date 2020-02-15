@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn01"><左箭头</button>
+    <span>你是轮播图</span>
+    <button id="btn02">右箭头></button>
+    <script>
+
+        // 闭包形成条件：
+        //    1. 函数嵌套函数
+        //    2. 里面函数执行的时候使用了外函数的局部变量
+
+        // 例子解读：自调用函数和事件处理函数会形成闭包
+
+        // 用沙箱包起来后，里面的数据更加安全
+        (function(){
+
+            // btn01, btn02 , keyIndex 是添加到自调用函数的活动对象上的
+            const btn01 = document.querySelector('#btn01');
+            const btn02 = document.querySelector('#btn02');
+
+            let keyIndex = 0;
+
+            // 当按钮被点击的时候，点击的函数其实会形成闭包
+            btn01.onclick = function(){
+                keyIndex--;
+                console.log(keyIndex);
+            }
+
+            btn02.onclick = function(){
+                keyIndex++;
+                console.log(keyIndex);
+            }
+            
+            console.log(keyIndex);      // 0，只输出一次，就不再运行了
+
+        })();
+
+        
+
+    </script>
+    <script>
+
+        let keyIndex = 100;
+
+    </script>
+</body>
+</html>

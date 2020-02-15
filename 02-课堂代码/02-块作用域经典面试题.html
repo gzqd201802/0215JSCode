@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>00</li>
+        <li>01</li>
+        <li>02</li>
+    </ul>
+    <script>
+
+        // 目标：for 和 let 形成块作用域
+        
+        const lis = document.querySelectorAll('li');
+
+
+        // var 声明初始值
+        // for (var i = 0; i < 3; i++) {
+        //     lis[i].onclick = function(){
+        //         console.log(i);
+        //     }
+        // }
+        // var i = 0;
+        // lis[i].onclick = function(){
+        //     console.log(i);
+        // }
+        // var i = 1;
+        // lis[i].onclick = function(){
+        //     console.log(i);
+        // }
+        // var i = 2;
+        // lis[i].onclick = function(){
+        //     console.log(i);
+        // }
+        // var i = 3;
+
+        // var 不管点击谁，最终都输出结果 3
+
+        // // let 声明初始值
+        // for (let i = 0; i < 3; i++) {
+        //     lis[i].onclick = function(){
+        //         console.log(i);
+        //     }
+        // }
+        {
+            let i = 0;
+            lis[i].onclick = function(){
+                console.log(i);
+            } 
+        }
+        {
+            let i = 1;
+            lis[i].onclick = function(){
+                console.log(i);
+            } 
+        }
+        {
+            let i = 2;
+            lis[i].onclick = function(){
+                console.log(i);
+            } 
+        }
+        
+        {
+            let i = 3;
+            // i累加到3的时候跳出了循环，所以就没有事件绑定
+        }
+
+    </script>
+</body>
+
+</html>

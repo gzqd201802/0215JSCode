@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 闭包形成条件：
+        //    1. 函数嵌套函数
+        //    2. 里面函数执行的时候使用了外函数的局部变量
+        function outer() {
+            let num = 0;
+            function inner() {
+                num++;
+                console.log('输出num结果', num);
+            }
+            return inner;
+        }
+
+        // 注意：外函数只调用了一次，所以只生产了一个 outer 的活动对象
+        // 所以 res() 再次调用的时候只是在 outer 活动对象上访问和累加 num 值
+        let res = outer();
+        res();
+        res();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>00</li>
+        <li>01</li>
+        <li>02</li>
+    </ul>
+    <script>
+
+        // forEach 遍历基础
+        // let arr = [11,22,33,44];
+        // arr.forEach(function(item,index){
+        //     console.log(item,index);
+        // });
+
+
+        // 闭包形成条件：
+        //    1. 函数嵌套函数
+        //    2. 里面函数执行的时候使用了外函数的局部变量
+        // 例子解读：forEach 的匿名函数和 事件处理函数形成闭包
+
+        const lis = document.querySelectorAll('li');
+        // 如果在 forEach 内部给元素绑定，其实也是会形成闭包
+        //   item,index 是函数的形参，形参的本质就是局部变量
+        lis.forEach(function(item,index){
+            item.onclick = function(){
+                console.log(item, index);
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>
