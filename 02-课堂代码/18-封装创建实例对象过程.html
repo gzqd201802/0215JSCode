@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数 - Person
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // 原型对象 - Person.prototype 
+        Person.prototype.run = function () {
+            console.log('能跑', this);
+        }
+
+        // 没封装前
+        // 实例对象 - p1
+        // const p1 = new Person('小明', 19);
+
+        // p1.run();
+
+        // 封装创建实例对象过程
+        function cp(name, age) {
+            return new Person(name, age);
+        }
+
+        const p1 = cp('小明', 19);
+        const p2 = cp('小明2', 18);
+        const p3 = cp('小明3', 17);
+        
+        console.log(p1);
+        console.log(p2);
+        console.log(p3);
+        
+
+    </script>
+</body>
+
+</html>

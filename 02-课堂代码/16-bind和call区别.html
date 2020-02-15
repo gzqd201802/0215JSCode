@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 目标：区别 bind 和 call。
+        //   小结：
+        //      1. call 会调用函数，调用的时候传递 this 和 实参
+        //      2. bind 不调用函数，返回新的函数，但是绑定函数内部的this和实参
+
+        function fn(a, b) {
+            console.log('函数调用了', this, a, b);
+        }
+
+        const obj = {
+            0: '小明',
+            1: '大明',
+            2: '中明',
+            length: 3
+        }
+
+        // call 会调用函数
+        // fn.call(obj,11,22);
+
+        // bind 不调用函数，是返回新的函数，但是返回的新函数内部的 this和实参已经绑定好了
+        const res = fn.bind(obj,11,22);
+        console.log(res === fn);    // false
+        res();                      // 调用bind返回的函数
+
+        // fn.bind(obj,11,22)();
+
+        
+        
+
+    </script>
+</body>
+</html>

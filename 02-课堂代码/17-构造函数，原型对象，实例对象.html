@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数 - Person
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // 原型对象 - Person.prototype 
+        Person.prototype.run = function () {
+            console.log('能跑', this);
+        }
+
+        // 实例对象 - p1
+        const p1 = new Person('小明', 19);
+
+        p1.run();
+
+    </script>
+</body>
+
+</html>

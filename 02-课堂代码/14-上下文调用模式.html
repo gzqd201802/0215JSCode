@@ -11,21 +11,13 @@
     <script>
 
         // call apply bind ==> 都可修改函数内this指向，把第一个参数作为 this
-        //  把第一个传入的参数作为this
-        function fn(a, b) {
-            console.log('函数被调用了', this, a, b);
+        //  1. 能调用(借用)函数
+        //  2. 传递的第一个的参数作为 this
+        function push(a, b) {
+            console.log('这个是数组原型的push方法', this, a, b);
         }
 
-        // fn.call([11,22]);
-        // fn.apply([11,22]);
-
-        // call 的 apply 传递的参数格式不一样
-
-        // call 的实参需要一个个进行传递
-        // fn.call({}, 11, 22);
-
-        // apply 需要以数组的方式传递实参
-        //    数组的第一项就是第一个实参
+        // call
         const obj = {
             0: '小明',
             1: '大明',
@@ -33,9 +25,13 @@
             length: 3
         }
 
-        fn.call(obj, 11, 22);
-        // fn.apply(obj, [11, 22]);
+        // push.call(obj, 11, 22);
 
+        // 伪数组借用真数组的功能
+        Array.prototype.push.call(obj, 11, 22);
+
+        console.log(obj);
+        
 
 
     </script>
