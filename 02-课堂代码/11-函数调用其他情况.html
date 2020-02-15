@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+
+        // 函数的四种调用模式。
+        //    this口诀：谁调用 this 就指向谁。（没指定调用者，默认指向 window）
+
+        // 1. 函数调用模式（直接调用）
+        (function () {
+            console.log(`自调用函数被调用了，this 指向是`, this);
+        })();
+       
+
+        // 2. 事件处理函数 -> 其实还是可以归纳到：方法调用模式
+        const btn = document.querySelector('button');
+        // btn是个对象，btn.onclick 给 btn 对象添加方法
+        btn.onclick = function(){
+            console.log(this);
+        }
+
+
+    </script>
+</body>
+
+</html>

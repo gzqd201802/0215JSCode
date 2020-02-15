@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 函数的四种调用模式。
+        //    this口诀：谁调用 this 就指向谁。（没指定调用者，默认指向 window）
+        function fn() {
+            console.log(`函数被调用了，this 指向是`, this);
+        }
+        // 1. 函数调用模式（直接调用）-> 函数内的this指向了window
+        fn();
+
+
+        // 2. 构造函数调用模式
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            console.log('构造函数内部输出', this);
+        }
+
+        const obj = new Person('小明',18);
+        console.log('实例对象obj输出',obj);
+
+        // 3. 方法调用模式
+        const obj2 = {
+            a:'a',
+            sayHi:function(){
+                console.log(this);
+            }
+        }
+
+        // sayHi 本质是个函数，obj2 就是函数的调用者。
+        //   点语法调用某个方法，点语法前面的对象就是调用者。
+        obj2.sayHi();
+
+        
+
+
+
+
+    </script>
+</body>
+
+</html>

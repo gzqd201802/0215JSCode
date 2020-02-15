@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    // // 1
+    // var age = 38;    // var 在全局作用域下声明的变量会添加到 window 中
+
+    // var obj = {
+    //     age: 18,
+    //     getAge: function() {
+    //         console.log(this.age);
+    //     }
+    // }
+    
+    // // 点前面是调用者，所以里面的 this 指向 obj
+    // obj.getAge();   // ??  18
+
+    // var f = obj.getAge;
+    // f();            // ??  38，这里前面没点语法，所以没有调用者，默认指向 window
+
+
+    // 2.
+    /**/
+    
+    // var age = 38;
+
+    // var obj = {
+    //     age: 18,
+    //     getAge: function() {
+    //         console.log(this.age);
+
+    //         function foo() {
+    //             console.log(this.age); 
+    //         }
+    //         foo();  // 这里其实是当做普通函数调用，前面没有指定调用者
+    //     }
+    // }
+
+    // // obj.getAge === obj["getAge"] 本质是一样的
+    // // debugger;
+    // // obj.getAge();            // 18   38
+    // // obj["getAge"]();
+
+    // var f2 = obj.getAge;
+    // f2();       // 38 38，当做普通函数调用，前面没有指定调用者
+
+
+    // 3
+    debugger;
+    var length = 10;
+
+    function fn() {
+        console.log(this.length)
+    }
+
+    var obj = {
+        length: 5,
+        method: function(fn) {
+            fn();       // 因为这里没有指定调用者，所以调用时候函数内的 this 指向 window
+            arguments[0](); // fn是被arguments用下标0获取并调用的，《fn属于方法调用模式》，fn内的this指向了arguments
+            // arguments[0] 和 fn 内存地址一样，当调用者不一样，所以输出结果不一样
+            // 区别：
+            //   1. fn() 没有调用者
+            //   1. arguments[0]() 调用者是 arguments
+        }
+    }
+
+    obj.method(fn, 10, 5);
+
+    // 10 
+    // 3    -> 这里的3是什么情况，arguments 伪数组的长度
+
+
+    </script>
+</body>
+
+</html>
