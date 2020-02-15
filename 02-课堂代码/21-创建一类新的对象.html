@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+    </ul>
+    <p>段落1</p>
+    <p>段落2</p>
+    <p>段落3</p>
+
+    <script>
+        // 目标1：根据选择器来获取元素，并且把获取到的元素添加放到jq的实例对象上
+        (function (global) {
+
+            // jQuery 核心函数 - 暂时看做一个构造函数
+            let jQuery = function (selector) {
+                // 根据传入的选择器查找到元素集合
+                const doms = document.querySelectorAll(selector);
+                // 遍历元素集合，把所有的元素添加到 jQuery 的新对象中
+                // 这里的 this 是 jQuery 实例对象
+                for (let i = 0; i < doms.length; i++) {
+                    this[i] = doms[i];
+                }
+                this.length = doms.length;
+                return this;
+            }
+            jQuery.prototype.css = function(){
+                console.log('jq对象调用了css功能');
+            }
+            jQuery.prototype.text = function(){
+                console.log('jq对象调用了text功能');
+            }
+            // 把局部的 jQuery 函数添加到全局对象上
+            global.$ = global.jQuery = jQuery;
+
+        })(window);
+
+        // 调用 jQuery 函数
+        const $li = new $('li');
+        console.log($li);
+
+
+
+
+    </script>
+</body>
+
+</html>

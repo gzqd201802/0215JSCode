@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+    </ul>
+    <p>段落1</p>
+    <p>段落2</p>
+    <p>段落3</p>
+
+    <script>
+        // 目标4：省去new操作，希望通过$()就可以得到jq的实例
+        //      4.1. 把选择元素的过程封装到原型中的 init
+        //      4.2  在 jQuery 函数内创建实例对象并返回
+        //      4.3  修复实例对象与原型对象关系
+        (function (global) {
+
+            // jQuery 核心函数 - 调用jQuery函数的时候直接 new 一个jQ对象并返回
+            // 优化前：new $('li')   
+            // 优化后：$('li') 直接返回 jQuery 对象
+            // 出自 jQuery 源码中第 71 行
+            let jQuery = function (selector) {
+                // 把创建对象的函数封装到其他地方
+                // 内部是直接调用封装的构造函数，创建 jQuery 实例
+                return new jQuery.prototype.init(selector);
+            }
+
+            // 重写 jQuery.prototype 原型对象
+            jQuery.fn = jQuery.prototype = {
+                constructor: jQuery,
+                // 真正的构造函数这里，jQuery 源码中把真正的构造函数写到这里
+                init: function(selector){
+                    // 根据传入的选择器查找到元素集合
+                    const doms = document.querySelectorAll(selector);
+                    // 遍历元素集合，把所有的元素添加到 jQuery 的新对象中
+                    for (let i = 0; i < doms.length; i++) {
+                        // this 还是 new 出来的 jQuery 对象
+                        this[i] = doms[i];
+                    }
+                    this.length = doms.length;
+                    return this;
+                },
+                css: function () {
+                    console.log('jq对象调用了css功能');
+                },
+                text: function () {
+                    console.log('jq对象调用了text功能');
+                },
+                show: function () {
+                    console.log('jq对象调用了show功能');
+                }
+            }
+
+
+            // 把局部的 jQuery 函数添加到全局对象上
+            global.$ = global.jQuery = jQuery;
+
+
+        })(window);
+
+
+        // 调用 jQuery 函数
+        const $li = $('li');
+        console.log($li);
+
+        // $li.css();
+
+
+
+
+    </script>
+</body>
+
+</html>

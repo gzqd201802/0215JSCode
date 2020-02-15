@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+    </ul>
+    <p>段落1</p>
+    <p>段落2</p>
+    <p>段落3</p>
+
+    <script>
+        // 目标1：jq 的基本架构
+        //      1. jq的架构是个自调用函数
+        //      2. 传参 window 的作用， 
+        //          1. 参数有利于代码压缩
+        (function(global){
+
+            // jQuery 核心函数
+            let jQuery = function(){
+                console.log('jQuery函数被调用了');
+            }
+
+
+            // 把局部的 jQuery 函数添加到全局对象上
+            global.$ = global.jQuery = jQuery;
+
+
+        })(window);
+
+
+        // 调用 jQuery 函数
+        jQuery();
+        $();
+        
+
+
+    </script>
+</body>
+</html>
