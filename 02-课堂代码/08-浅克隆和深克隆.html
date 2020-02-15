@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // const obj = {
+        //     a: '属性a值',
+        //     b: '属性b值',
+        //     c: {
+        //         cc: 'c对象中的cc'
+        //     }
+        // };
+
+        // // 前置知识：对象赋值，把  obj 内存地址赋值给了 o1
+        // const o1 = obj;
+
+        // o1.a = '666';
+
+        // console.log(o1);
+        // console.log(obj);
+        // console.log(obj === o1);    // true
+
+
+        // 浅克隆：克隆出来的对象和源对象不同内存地址
+        const obj = {
+            a: '属性a值',
+            b: '属性b值',
+            c: {
+                cc: 'c对象中的cc'
+            }
+        };
+
+
+        let o2 = {};
+
+        // o2.a = obj.a;
+        // 在 for in 遍历的时候只能用 []
+        // o2['a'] = obj['a'];
+        // o2['b'] = obj['b'];
+        // o2['c'] = obj['c'];
+
+        // 浅克隆
+        for(let key in obj){
+            o2[key] = obj[key];
+        }
+
+        console.log('obj',obj);
+        console.log('o2',o2);
+        console.log(obj === o2);        // false
+        // 浅克隆小缺陷：
+        console.log(obj.c === o2.c);    // true
+        
+        
+
+        
+
+
+
+
+
+        
+
+
+
+    </script>
+</body>
+
+</html>

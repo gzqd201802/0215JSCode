@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 目标：了解递归函数的结构，并不是说某个效果只能通过递归实现
+
+        // 目的：斐波那契数列:  1、1、2、3、5、8、13、21、34、55
+        //   1. 找出斐波那契数列规律
+        //   2. 代码实现斐波那契数列
+        //   3. 求出斐波那契数列第 n 个数的值
+
+        // 第1个数是：1
+        // 第2个数是：1
+        // 第3个数到后面的数如何推导出来：前两个数加起来的和(规律)
+
+        function func(n){
+            // 第1个数和第2个数是1
+            if(n === 1 || n === 2){
+                return 1;
+            }else{
+                return func(n-1) + func(n-2);
+            }
+        }
+
+        // 需求：求出斐波那契数列第 10 个数的值
+        const res = func(10);
+        console.log(res);
+        
+        
+        
+
+    </script>
+</body>
+
+</html>

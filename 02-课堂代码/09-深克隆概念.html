@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 浅克隆：克隆出来的对象和源对象不同内存地址
+        //  浅克隆缺陷：两个对象之间并没有完全独立。
+
+        // 深克隆：克隆出来的对象和源对象其包括子对象的内存地址都不同
+
+        const obj = {
+            a: '属性a值',
+            b: '属性b值',
+            c: {
+                cc: 'c对象中的cc'
+            }
+        };
+
+
+        // 克隆
+        const o3 = {};
+        for(let key in obj){
+            o3[key] =  obj[key];
+        }
+
+        o3['c'] = {}
+        for(let key in obj['c']){
+            o3['c'][key] = obj['c'][key];
+        }
+
+
+        console.log('obj', obj);
+        console.log('o3', o3);
+
+        console.log(obj === o3);
+        console.log(obj.c === o3.c);
+
+        // 很多JS库的对象深克隆其实底层是通过递归实现的。
+        //   深克隆的原理：
+        //      1. 封装一个深克隆函数
+        //      2. 函数内部克隆对象的属性
+        //      3. 判断其子属性是否也是对象，如果是对象，继续调用深克隆克隆子对象
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 目标：了解递归函数的结构，并不是说某个效果只能通过递归实现
+
+        // 1. 1-100所有数的和
+
+        // 1到100的和： 100 + (1到99的和)
+        // 1到99的和：  99 +  (1到98的和)
+        // 1到98的和：  98 +  (1到97的和)
+        // ...
+        // 1到2的和：   2 +  (1的和)
+        // 1和：        1
+
+
+        function func(num) {
+            if (num === 1) {
+                return 1;
+            }else{
+                return num + func(num - 1);
+            }
+        }
+
+        const arr = func(100);
+        console.log(arr);
+        
+
+    </script>
+</body>
+
+</html>
