@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // call，apply 真正强大的地方是能够扩充函数赖以运行的作用域 - 红宝书
+        // 目标：通过call和apply，让伪数组也能调用数组的方法
+
+        // 真数组 - 原型对象为 Array.prototype 的这类对象
+        const arr = ['小明', '大明', '中明'];
+        // arr.push('老明','小小明');
+
+        // 伪数组 - 伪数组是一个对象, 这个对象必须要有length属性
+        const obj = {
+            0: '小明',
+            1: '大明',
+            2: '中明',
+            length: 3
+        }
+        console.log(obj);
+        // obj.push('老明','小小明');
+
+        // push 其实是数组专属的方法，普通对象是无法调用的
+        Array.prototype.push.call(obj, '老明','小小明');
+        console.log(obj);
+
+        // Array.prototype.push.apply(obj, ['老明', '小小明']);
+
+        
+
+    </script>
+</body>
+
+</html>

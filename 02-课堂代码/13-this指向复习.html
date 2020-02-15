@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        // 函数的调用方式
+        // this口诀：谁调用this就指向谁，(如果前面没有指定调用者，默认是 window)
+        
+        // 1. 普通函数
+        function fn() {
+            console.log('函数被调用了',this);
+        }
+        fn();       // window
+        
+        // 2. 对象的方法
+        var o = {
+            sayHi: fn
+        }
+        o.sayHi();  // 对象 o
+
+        // 3. 绑定事件函数
+        const btn = document.querySelector('button');
+        btn.onclick = fn;   // 点击了按钮就可以调用这个函数，btn 元素
+
+        // 4. 定时器函数，定时器其实是由 window 调用
+        setTimeout(fn, 1000);   // 这个函数是定时器，1秒钟后调用
+
+        
+    </script>
+</body>
+
+</html>

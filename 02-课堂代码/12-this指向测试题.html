@@ -64,9 +64,9 @@
         method: function(fn) {
             fn();       // 因为这里没有指定调用者，所以调用时候函数内的 this 指向 window
             arguments[0](); // fn是被arguments用下标0获取并调用的，《fn属于方法调用模式》，fn内的this指向了arguments
-            // arguments[0] 和 fn 内存地址一样，当调用者不一样，所以输出结果不一样
+            // arguments[0] 和 fn 内存地址一样，但是调用者不一样，所以输出结果不一样
             // 区别：
-            //   1. fn() 没有调用者
+            //   1. fn() 没有调用者，所以 this 是 window
             //   1. arguments[0]() 调用者是 arguments
         }
     }
@@ -74,8 +74,8 @@
     obj.method(fn, 10, 5);
 
     // 10 
-    // 3    -> 这里的3是什么情况，arguments 伪数组的长度
-
+    // 3    -> 这里的3是什么情况？arguments 伪数组的长度
+    //  this口诀：谁调用this就指向谁，(如果前面没有指定调用者，默认是 window)
 
     </script>
 </body>
