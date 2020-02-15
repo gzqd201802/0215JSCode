@@ -59,6 +59,7 @@
             }
 
             // jQuery.fn.init 现在是核心构造函数，也需要重写原型
+            // 把 jQuery 的原型对象也给 jQuery.fn.init 一份
             // !!! 修复实例对象与原型对象关系
             jQuery.fn.init.prototype = jQuery.fn;
 
